@@ -18,22 +18,20 @@ module.exports = (async () => {
   });
 
   const schema = {
-    name: 'books',
+    name: 'rss',
     fields: [
-      { name: 'title', type: 'string' },
-      { name: 'authors', type: 'string[]', facet: true },
-      { name: 'publication_year', type: 'int32', facet: true },
-      { name: 'ratings_count', type: 'int32' },
-      { name: 'average_rating', type: 'float',  facet: true },
+      { name: 'category', type: 'string' },
+      { name: 'url', type: 'string'},
+      { name: 'rssurl', type: 'string'},
+      { name: 'rsstext', type: 'string'},
     ],
-    default_sorting_field: 'ratings_count',
   };
 
   console.log('Populating index in Typesense');
 
   try {
-    await typesense.collections('books').delete();
-    console.log('Deleting existing collection: books');
+    await typesense.collections('rss').delete();
+    console.log('Deleting existing collection: rss');
   } catch (error) {
     // Do nothing
   }
@@ -43,12 +41,12 @@ module.exports = (async () => {
   await typesense.collections().create(schema);
 
   console.log('Adding records: ');
-  const books = require('./data/books.json');
+  const rss = require('../jss.json');
   try {
     const returnData = await typesense
-      .collections('books')
+      .collections('rss')
       .documents()
-      .import(books);
+      .import(rss);
     console.log(returnData);
     console.log('Done indexing.');
 
