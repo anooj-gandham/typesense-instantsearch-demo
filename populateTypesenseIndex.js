@@ -45,7 +45,7 @@ module.exports = (async() => {
     const rss3 = require('../blogsText/jsf3.json');
     const rss4 = require('../blogsText/jsf4.json');
     const rss5 = require('../blogsText/jsf5.json');
-    rss = rss1 + rss2 + rss3 + rss4 + rss5
+    const rss = rss1 + rss2 + rss3 + rss4 + rss5
     try {
         const returnData = await typesense
             .collections('rss')
