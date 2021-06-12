@@ -5,60 +5,64 @@
 
 const Typesense = require('typesense');
 
-module.exports = (async () => {
-  const typesense = new Typesense.Client({
-    nodes: [
-      {
-        host: 'localhost',
-        port: '8108',
-        protocol: 'http',
-      },
-    ],
-    apiKey: 'xyz',
-  });
+module.exports = (async() => {
+    const typesense = new Typesense.Client({
+        nodes: [{
+            host: 'localhost',
+            port: '8108',
+            protocol: 'http',
+        }, ],
+        apiKey: 'xyz',
+    });
 
-  const schema = {
-    name: 'rss',
-    fields: [
-      { name: 'category', type: 'string' },
-      { name: 'url', type: 'string'},
-      { name: 'rssurl', type: 'string'},
-      { name: 'rsstext', type: 'string'},
-    ],
-  };
+    const schema = {
+        name: 'rss',
+        fields: [
+            { name: 'category', type: 'string' },
+            { name: 'url', type: 'string' },
+            { name: 'rssurl', type: 'string' },
+            { name: 'rsstext', type: 'string' },
+        ],
+    };
 
-  console.log('Populating index in Typesense');
+    console.log('Populating index in Typesense');
 
-  try {
-    await typesense.collections('rss').delete();
-    console.log('Deleting existing collection: rss');
-  } catch (error) {
-    // Do nothing
-  }
-
-  console.log('Creating schema: ');
-  console.log(JSON.stringify(schema, null, 2));
-  await typesense.collections().create(schema);
-
-  console.log('Adding records: ');
-  const rss = require('../jss.json');
-  try {
-    const returnData = await typesense
-      .collections('rss')
-      .documents()
-      .import(rss);
-    console.log(returnData);
-    console.log('Done indexing.');
-
-    const failedItems = returnData.filter(item => item.success === false);
-    if (failedItems.length > 0) {
-      throw new Error(
-        `Error indexing items ${JSON.stringify(failedItems, null, 2)}`
-      );
+    try {
+        await typesense.collections('rss').delete();
+        console.log('Deleting existing collection: rss');
+    } catch (error) {
+        // Do nothing
     }
 
-    return returnData;
-  } catch (error) {
-    console.log(error);
-  }
+    console.log('Creating schema: ');
+    console.log(JSON.stringify(schema, null, 2));
+    await typesense.collections().create(schema);
+
+    console.log('Adding records: ');
+    // const rss = require('../jss.json');
+    const rss1 = require('../blogsText/jsf.json');
+    const rss2 = require('../blogsText/jsf2.json');
+    const rss3 = require('../blogsText/jsf3.json');
+    const rss4 = require('../blogsText/jsf4.json');
+    const rss5 = require('../blogsText/jsf5.json');
+    rss = rss1 + rss2 + rss3 + rss4 + rss5
+    try {
+        const returnData = await typesense
+            .collections('rss')
+            .documents()
+            .import(rss);
+        console.log(returnData);
+        console.log('Done indexing.');
+
+        const failedItems = returnData.filter(item => item.success === false);
+        if (failedItems.length > 0) {
+            throw new Error(
+                `Error indexing items ${JSON.stringify(failedItems, null, 2)}`
+            );
+        }
+
+        return returnData;
+    } catch (error) {
+        console.log(error);
+    }
 })();
