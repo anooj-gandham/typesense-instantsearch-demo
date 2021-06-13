@@ -43,11 +43,11 @@ module.exports = (async () => {
     typesense.collections.create(schema);
   }
 
-  // var myArgs = process.argv.slice(2);
+  var myArgs = process.argv.slice(2);
 
   console.log('Adding records: ');
 
-  const rss = require('../reducedBlogs/rss0.json');
+  const rss = require(myArgs[0]);
   try {
     const returnData = await typesense
       .collections('rss')
