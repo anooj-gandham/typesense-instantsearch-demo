@@ -9,7 +9,7 @@ module.exports = (async () => {
   const typesense = new Typesense.Client({
     nodes: [
       {
-        host: 'localhost',
+        host: '172.105.148.128',
         port: '8108',
         protocol: 'http',
       },
