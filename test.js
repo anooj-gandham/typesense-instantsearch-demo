@@ -1,2 +1,3 @@
-const aa = require('../reducedBlogs/rss0.json');
-console.log(aa.concat(aa));
+const aa = require('../newBlogs/new.json');
+
+console.log(aa);

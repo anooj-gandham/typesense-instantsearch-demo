@@ -18,7 +18,7 @@ const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
   //  queryBy is required.
   //  filterBy is managed and overridden by InstantSearch.js. To set it, you want to use one of the filter widgets like refinementList or use the `configure` widget.
   additionalSearchParameters: {
-    queryBy: 'rsstext,category,url',
+    queryBy: 'description,category',
   },
 });
 const searchClient = typesenseInstantsearchAdapter.searchClient;
@@ -39,15 +39,18 @@ search.addWidgets([
     container: '#hits',
     templates: {
       item: `
-        <div>
-          <div class="hit-name">
-            {{#helpers.highlight}}{ "attribute": "url" }{{/helpers.highlight}}
-          </div>
-          <div class="hit-publication-year">{{category}}</div>
-        </div>
-      `,
+            <div>
+              <div class="hit-name">
+                {{#helpers.highlight}}{ "attribute": "title" }{{/helpers.highlight}}
+              </div>
+              <div class="hit-authors">
+                {{ category }}
+              </div>
+            </div>
+          `,
     },
   }),
+
   instantsearch.widgets.pagination({
     container: '#pagination',
   }),

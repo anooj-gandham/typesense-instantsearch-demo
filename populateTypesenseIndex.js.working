@@ -30,25 +30,17 @@ module.exports = (async () => {
   console.log('Populating index in Typesense');
 
   try {
-    console.log('Deleting existing collection: rss');
     await typesense.collections('rss').delete();
-    console.log('Successfully deleted collection ');
-  } catch (error) { 
-    console.log("Deletion encountered an error " + error);
+    console.log('Deleting existing collection: rss');
+  } catch (error) {
+    // Do nothing
   }
 
   console.log('Creating schema: ');
   console.log(JSON.stringify(schema, null, 2));
-
-
-  console.log("just after schema ");
-  console.log(typesense.collections('rss'));
-
   await typesense.collections().create(schema);
   if (typesense.collections('rss') == null) {
-    console.log("rss collections is null. Creating it")
-    await typesense.collections().create(schema);
-    console.log("rss collections successfully created");
+    typesense.collections().create(schema);
   } else {
     console.log("rss collection is already present" );
     console.log(typesense.collections('rss'));

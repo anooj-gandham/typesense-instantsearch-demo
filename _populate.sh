@@ -1,5 +1,5 @@
-for name in `ls ../reducedBlogs/rss111*`
+for name in `ls ../newBlogs/rss*`
 do
-node populateTypesenseIndex $name
-# echo $name
+echo $name
+node pop11 $name
 done
