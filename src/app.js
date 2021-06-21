@@ -1,5 +1,3 @@
-/* global instantsearch */
-
 import TypesenseInstantSearchAdapter from 'typesense-instantsearch-adapter';
 
 const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
@@ -18,14 +16,14 @@ const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
   //  queryBy is required.
   //  filterBy is managed and overridden by InstantSearch.js. To set it, you want to use one of the filter widgets like refinementList or use the `configure` widget.
   additionalSearchParameters: {
-    queryBy: 'title,authors',
+    queryBy: 'title,description',
   },
 });
 const searchClient = typesenseInstantsearchAdapter.searchClient;
 
 const search = instantsearch({
   searchClient,
-  indexName: 'books',
+  indexName: 'blogs',
 });
 
 search.addWidgets([
@@ -40,15 +38,13 @@ search.addWidgets([
     templates: {
       item: `
         <div>
-          <img src="{{image_url}}" alt="{{name}}" height="100" />
-          <div class="hit-name">
+          <div class="hit-name"><a href={url}>
             {{#helpers.highlight}}{ "attribute": "title" }{{/helpers.highlight}}
-          </div>
+          </a>
+            </div>
           <div class="hit-authors">
-            {{ authors }}
+            {{ category }}
           </div>
-          <div class="hit-publication-year">{{publication_year}}</div>
-          <div class="hit-rating">{{average_rating}}/5 rating</div>
         </div>
       `,
     },

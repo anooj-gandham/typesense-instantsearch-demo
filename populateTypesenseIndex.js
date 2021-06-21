@@ -1,12 +1,7 @@
-/* eslint-disable */
-
-// Start Typesense server with `npm run typesenseServer`
-// Then run `npm run populateTypesenseIndex` or `node populateTypesenseIndex.js`
-
 const Typesense = require('typesense');
 
 module.exports = (async () => {
-  const typesense = new Typesense.Client({
+  const client = new Typesense.Client({
     nodes: [
       {
         host: 'localhost',
@@ -18,37 +13,35 @@ module.exports = (async () => {
   });
 
   const schema = {
-    name: 'books',
+    name: 'blogs',
     fields: [
       { name: 'title', type: 'string' },
-      { name: 'authors', type: 'string[]', facet: true },
-      { name: 'publication_year', type: 'int32', facet: true },
-      { name: 'ratings_count', type: 'int32' },
-      { name: 'average_rating', type: 'float',  facet: true },
+      { name: 'category', type: 'string' },
+      { name: 'url', type: 'string' },
+      { name: 'description', type: 'string' },
     ],
-    default_sorting_field: 'ratings_count',
   };
 
   console.log('Populating index in Typesense');
 
   try {
-    await typesense.collections('books').delete();
-    console.log('Deleting existing collection: books');
+    await client.collections('blogs').delete();
+    console.log('Deleting existing collection: blogs');
   } catch (error) {
     // Do nothing
   }
 
   console.log('Creating schema: ');
   console.log(JSON.stringify(schema, null, 2));
-  await typesense.collections().create(schema);
+  await client.collections().create(schema);
 
   console.log('Adding records: ');
-  const books = require('./data/books.json');
+  const blogs = require('./tt.json');
   try {
-    const returnData = await typesense
-      .collections('books')
+    const returnData = await client
+      .collections('blogs')
       .documents()
-      .import(books);
+      .import(blogs);
     console.log(returnData);
     console.log('Done indexing.');
 
