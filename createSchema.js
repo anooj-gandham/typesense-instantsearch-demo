@@ -1,5 +1,5 @@
 const Typesense = require('typesense');
-
+const _ = require('lodash');
 module.exports = (async () => {
   const client = new Typesense.Client({
     nodes: [
@@ -21,4 +21,19 @@ module.exports = (async () => {
       { name: 'description', type: 'string' },
     ],
   };
+  const collections = await client.collections().retrieve();
+  const collectionNames = collections.map(collection => {
+    return collection.name;
+  });
+  console.log(collectionNames);
+  try {
+    if (_.includes(collectionNames, 'blogs') === false) {
+      await client.collections().create(schema);
+      console.log('Collection blogs created successfully');
+    } else {
+      console.log('Collection blogs already present');
+    }
+  } catch (error) {
+    console.error(error);
+  }
 })();
