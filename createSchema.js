@@ -9,7 +9,7 @@ module.exports = (async () => {
         protocol: 'http',
       },
     ],
-    apiKey: 'xyz',
+    apiKey: 'FixO5HtCLHbZhg92OevOl4Yt6SNwZ17TXWfI2RCmsL0GshIu',
   });
 
   const schema = {
