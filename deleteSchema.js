@@ -11,23 +11,20 @@ module.exports = (async () => {
     ],
     apiKey: 'FixO5HtCLHbZhg92OevOl4Yt6SNwZ17TXWfI2RCmsL0GshIu',
   });
+
   const collections = await client.collections().retrieve();
   const collectionNames = collections.map(collection => {
     return collection.name;
   });
   console.log(collectionNames);
-  collectionNames.map(c => {
-    try {
-      const returnData = await client
-        .collections(c)
-        .documents()
-        .export();
-      console.log(
-        `No of documents in collection ${c}: `,
-        returnData.match(/}/g).length
-      );
-    } catch (error) {
-      console.log(error);
+  try {
+    if (_.includes(collectionNames, schema) === true) {
+      await client.collections(schema).delete();
+      console.log(`Collection ${schema} deleted successfully`);
+    } else {
+      console.log(`Collection ${schema} not present`);
     }
-  })
+  } catch (error) {
+    console.error(error);
+  }
 })();
