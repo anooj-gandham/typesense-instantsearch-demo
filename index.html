@@ -1,48 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="theme-color" content="#000000" />
+    <!-- font imports   -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora&family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <!-- font import end -->
+    <link rel="shortcut icon" href="./icon.png" />
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="theme-color" content="#000000">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/instantsearch.css@7/themes/algolia-min.css"
+    />
+    <link rel="stylesheet" href="./src/index.css" />
+    <link rel="stylesheet" href="./src/app.scss" />
 
-  <link rel="manifest" href="./manifest.webmanifest">
-  <link rel="shortcut icon" href="./favicon.png">
+    <title>Blogs Search</title>
+  </head>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7/themes/algolia-min.css">
-  <link rel="stylesheet" href="./src/index.css">
-  <link rel="stylesheet" href="./src/app.scss">
-
-  <title>Typesense InstantSearch.js Demo</title>
-</head>
-
-<body>
-  <header class="header">
-    <h1 class="header-title">
-      <a href="/">Instant Search Demo</a>
-    </h1>
-    <p class="header-subtitle">
-      using
-      <a href="https://github.com/algolia/instantsearch.js">
-        Typesense + InstantSearch.js
-      </a>
-    </p>
-  </header>
-
-  <div class="container">
-    <div class="search-panel">
-      <div class="search-panel__results">
-        <div id="searchbox"></div>
-        <div id="hits"></div>
+  <body>
+    <header class="header">
+      <h1 class="header-title">
+        <a href="/">Blog Search</a>
+      </h1>
+      <img src="./icon.svg" class="icon" />
+    </header>
+    <div class="parent">
+      <div class="categs-box">
+        <div id="category"></div>
+        <div class="clear-categs" id="clear-categs"></div>
       </div>
+      <div class="container">
+        <div class="search-panel">
+          <div class="search-panel__results">
+            <div id="searchbox"></div>
+            <div id="hits"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="pagination" class="pagination"></div>
     </div>
 
-    <div id="pagination"></div>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/algoliasearch/3.32.0/algoliasearchLite.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.5.0"></script>
-  <script src="./src/app.js"></script>
-</body>
-
+    <script src="https://cdn.jsdelivr.net/algoliasearch/3.32.0/algoliasearchLite.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.5.0"></script>
+    <script src="./src/app.js"></script>
+  </body>
 </html>

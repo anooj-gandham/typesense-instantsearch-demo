@@ -9,14 +9,14 @@ module.exports = (async () => {
         protocol: 'http',
       },
     ],
-    apiKey: 'FixO5HtCLHbZhg92OevOl4Yt6SNwZ17TXWfI2RCmsL0GshIu',
+    apiKey: 'xyz',
   });
 
   const schema = {
     name: 'blogs',
     fields: [
       { name: 'title', type: 'string' },
-      { name: 'category', type: 'string' },
+      { name: 'category', type: 'string', facet: true },
       { name: 'url', type: 'string' },
       { name: 'description', type: 'string' },
     ],

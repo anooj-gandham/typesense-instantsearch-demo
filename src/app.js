@@ -29,6 +29,7 @@ const search = instantsearch({
 search.addWidgets([
   instantsearch.widgets.searchBox({
     container: '#searchbox',
+    searchablePlaceholder: 'Search title',
   }),
   instantsearch.widgets.configure({
     hitsPerPage: 8,
@@ -48,6 +49,31 @@ search.addWidgets([
         </div>
       `,
     },
+  }),
+
+  instantsearch.widgets.refinementList({
+    limit: 10,
+    showMore: true,
+    showMoreLimit: 30,
+    container: '#category',
+    attribute: 'category',
+    searchable: true,
+    searchablePlaceholder: 'Search Categories',
+    showMore: true,
+    sortBy: ['name:asc', 'count:desc'],
+    cssClasses: {
+      searchableInput: 'search-categs-input',
+      // searchableSubmit: 'd-none',
+      // searchableReset: 'd-none',
+      // showMore: 'btn btn-secondary btn-sm',
+      // list: 'list-unstyled',
+      // count: 'badge text-dark-2 ml-2',
+      // label: 'd-flex align-items-center',
+      // checkbox: 'mr-2',
+    },
+  }),
+  instantsearch.widgets.clearRefinements({
+    container: '#clear-categs',
   }),
   instantsearch.widgets.pagination({
     container: '#pagination',

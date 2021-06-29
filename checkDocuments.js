@@ -9,14 +9,14 @@ module.exports = (async () => {
         protocol: 'http',
       },
     ],
-    apiKey: 'FixO5HtCLHbZhg92OevOl4Yt6SNwZ17TXWfI2RCmsL0GshIu',
+    apiKey: 'xyz',
   });
   const collections = await client.collections().retrieve();
   const collectionNames = collections.map(collection => {
     return collection.name;
   });
   console.log(collectionNames);
-  collectionNames.map(c => {
+  collectionNames.map(async c => {
     try {
       const returnData = await client
         .collections(c)
@@ -29,5 +29,5 @@ module.exports = (async () => {
     } catch (error) {
       console.log(error);
     }
-  })
+  });
 })();
