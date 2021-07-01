@@ -33,6 +33,10 @@
   width: 85%;
 }
 
+.categs-headers {
+  font-size: 15px;
+}
+
 .clear-categs {
   margin-top: 5px;
 }
@@ -50,20 +54,23 @@
 .container {
   font-family: 'Roboto', sans-serif;
   max-width: 1200px;
+
   margin: 10px 10px;
+  display: block;
   // padding: 1rem;
 }
 
 .search-panel {
-  display: flex;
+  display: block;
 }
 
 .search-panel__filters {
-  flex: 1;
+  // flex: 1;
 }
 
 .search-panel__results {
-  flex: 3;
+  // background-color: aquamarine;
+  // flex: 3;
 }
 
 .ais-Highlight-highlighted {
@@ -78,9 +85,7 @@
 #pagination {
   margin: 2rem auto;
   text-align: center;
-  align-items: center;
 }
-
 .hit-name {
   font-size: 1.1rem;
   font-weight: bold;
@@ -93,7 +98,16 @@
 }
 
 .ais-Hits-item {
+  // background-color: aquamarine;
+  // width: 95%;
   padding: 20px;
   box-shadow: none;
   border: 1px solid lighten(lightgray, 8%);
+}
+
+.colors {
+  background-color: #1e2334;
+  border-color: #e4d8b4;
+  border-color: #fa4970;
+  border-color: #1e2334;
 }

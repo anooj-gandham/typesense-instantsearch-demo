@@ -29,17 +29,17 @@ const search = instantsearch({
 search.addWidgets([
   instantsearch.widgets.searchBox({
     container: '#searchbox',
-    searchablePlaceholder: 'Search title',
+    placeholder: 'Search for Blogs... ',
   }),
   instantsearch.widgets.configure({
-    hitsPerPage: 8,
+    hitsPerPage: 10,
   }),
   instantsearch.widgets.hits({
     container: '#hits',
     templates: {
       item: `
         <div>
-          <div class="hit-name"><a href={url}>
+          <div class="hit-name"><a href={{url}}>
             {{#helpers.highlight}}{ "attribute": "title" }{{/helpers.highlight}}
           </a>
             </div>
@@ -72,8 +72,17 @@ search.addWidgets([
       // checkbox: 'mr-2',
     },
   }),
+  instantsearch.widgets.rangeSlider({
+    container: '#nwords',
+    attribute: 'nwords',
+    step: 100,
+  }),
+
   instantsearch.widgets.clearRefinements({
     container: '#clear-categs',
+    templates: {
+      resetLabel: 'Clear filters',
+    },
   }),
   instantsearch.widgets.pagination({
     container: '#pagination',

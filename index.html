@@ -18,10 +18,7 @@
     <!-- font import end -->
     <link rel="shortcut icon" href="./icon.png" />
 
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/instantsearch.css@7/themes/algolia-min.css"
-    />
+    <link rel="stylesheet" href="./src/algolia-min.css" />
     <link rel="stylesheet" href="./src/index.css" />
     <link rel="stylesheet" href="./src/app.scss" />
 
@@ -37,7 +34,12 @@
     </header>
     <div class="parent">
       <div class="categs-box">
-        <div id="category"></div>
+        <p class="categs-headers">Filter by categories</p>
+        <div id="category" class="category-checkbox"></div>
+        <div class="mt-1">&nbsp;</div>
+        <p class="categs-headers">Filter by number of words</p>
+        <div id="nwords"></div>
+        <div class="mt-1">&nbsp;</div>
         <div class="clear-categs" id="clear-categs"></div>
       </div>
       <div class="container">
@@ -47,9 +49,8 @@
             <div id="hits"></div>
           </div>
         </div>
+        <div id="pagination" class="pagination"></div>
       </div>
-
-      <div id="pagination" class="pagination"></div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/algoliasearch/3.32.0/algoliasearchLite.min.js"></script>
