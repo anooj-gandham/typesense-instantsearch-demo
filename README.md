@@ -1,21 +1,48 @@
-# typesense-instantsearch-demo
+### Demo for Blog Search
 
-This is a demo that shows you a quick search interface that was built with [typesense-instantsearch-adapter](https://github.com/typesense/typesense-instantsearch-adapter).
+A search for blogs built using Typesense engine as backend and Typesense-Instantsearch-adapter for UI.
 
-Read the accompanying walk-through here: [https://typesense.org/docs/0.20.0/guide/search-ui-components.html](https://typesense.org/docs/0.20.0/guide/search-ui-components.html).
+---
 
-## Get started
+Each document for the search engine collection should follow the below Schema:
 
-To run this project locally, install the dependencies, start Typesense Server, populate the index and run the app server:
-
-```sh
-$ npm install
-$ npm run typesenseServer
+```
+{
+  { name: 'title', type: 'string' },
+  { name: 'category', type: 'string' },
+  { name: 'url', type: 'string' },
+  { name: 'description', type: 'string' },
+  { name: 'text', type: 'string' },
+  { name: 'read_time', type: 'int32' },
+  { name: 'aud', type: 'string' }
+}
 ```
 
-```sh
-$ npm run populateTypesenseIndex
-$ npm start
-```
+1. `git clone https://github.com/anooj-gandham/typesense-instantsearch-demo`
+2. `npm i`
+3. `npm run typesenseServer`
+4. `node createSchema.js`
+5. `node addDocuments <path of file with records>`
+6. `npm start`
 
-Open http://localhost:3000 to see your app.
+---
+
+Additionally, the number of documents in a collection can be viewed using:
+
+`node checkDocuments.js`
+
+A collection can be deleted using:
+
+`node deleteSchema.js <collection name>`
+
+The UI will be running on [http://localhost:3000](http://localhost:3000)
+
+**Homescreen** ![](./homescreen.png)
+
+---
+
+**Search Screen** ![](./searchscreen.png)
+
+---
+
+> Happy Searching

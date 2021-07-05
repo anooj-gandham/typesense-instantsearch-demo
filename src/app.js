@@ -30,10 +30,12 @@ const search = instantsearch({
     const hits = document.querySelector('#hits');
     const pagination = document.querySelector('#pagination');
     const filter = document.querySelector('.filter-box');
+    const empty = document.querySelector('.empty');
 
     hits.style.display = helper.state.query === '' ? 'none' : '';
     pagination.style.display = helper.state.query === '' ? 'none' : '';
     filter.style.display = helper.state.query === '' ? 'none' : '';
+    empty.style.display = helper.state.query !== '' ? 'none' : '';
 
     helper.search();
   },
