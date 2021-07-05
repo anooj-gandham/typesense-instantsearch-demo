@@ -34,19 +34,18 @@
     </header>
     <div class="parent">
       <div class="categs-box">
-        <p class="categs-headers">Filter by categories</p>
-        <div id="category" class="category-checkbox"></div>
-        <div class="mt-1">&nbsp;</div>
-
-        <p class="categs-headers">Audience</p>
-        <div id="aud" class="category-checkbox"></div>
-        <div class="mt-1">&nbsp;</div>
-
-        <p class="categs-headers">Filter by reading time</p>
-        <div id="read_time"></div>
-        <div class="mt-1">&nbsp;</div>
-
-        <div class="clear-categs" id="clear-categs"></div>
+        <div class="filter-box">
+          <p class="categs-headers">Filter by categories</p>
+          <div id="category" class="category-checkbox"></div>
+          <div class="mt-1">&nbsp;</div>
+          <p class="categs-headers">Audience</p>
+          <div id="aud" class="category-checkbox"></div>
+          <div class="mt-1">&nbsp;</div>
+          <p class="categs-headers">Filter by reading time</p>
+          <div id="read_time"></div>
+          <div class="mt-1">&nbsp;</div>
+          <div class="clear-categs" id="clear-categs"></div>
+        </div>
       </div>
       <div class="container">
         <div class="search-panel">
@@ -57,6 +56,13 @@
         </div>
         <div id="pagination" class="pagination"></div>
       </div>
+    </div>
+    <div class="empty">
+      <img src="./icon.svg" alt="icon" class="empty-image" />
+      <p class="empty-text">
+        Enter a keyword <br />
+        to search
+      </p>
     </div>
 
     <script src="https://cdn.jsdelivr.net/algoliasearch/3.32.0/algoliasearchLite.min.js"></script>

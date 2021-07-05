@@ -25,6 +25,18 @@ const searchClient = typesenseInstantsearchAdapter.searchClient;
 const search = instantsearch({
   searchClient,
   indexName: 'blogs',
+  // https://stackoverflow.com/questions/37801289/how-do-i-set-algolia-to-not-return-any-results-if-the-query-is-blank
+  searchFunction(helper) {
+    const hits = document.querySelector('#hits');
+    const pagination = document.querySelector('#pagination');
+    const filter = document.querySelector('.filter-box');
+
+    hits.style.display = helper.state.query === '' ? 'none' : '';
+    pagination.style.display = helper.state.query === '' ? 'none' : '';
+    filter.style.display = helper.state.query === '' ? 'none' : '';
+
+    helper.search();
+  },
 });
 
 search.addWidgets([
