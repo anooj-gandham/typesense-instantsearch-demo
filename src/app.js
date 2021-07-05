@@ -16,7 +16,8 @@ const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
   //  queryBy is required.
   //  filterBy is managed and overridden by InstantSearch.js. To set it, you want to use one of the filter widgets like refinementList or use the `configure` widget.
   additionalSearchParameters: {
-    queryBy: 'title,description',
+    queryBy: 'text',
+    highlightAffixNumTokens: 15,
   },
 });
 const searchClient = typesenseInstantsearchAdapter.searchClient;
@@ -33,6 +34,7 @@ search.addWidgets([
   }),
   instantsearch.widgets.configure({
     hitsPerPage: 10,
+    // attributesToSnippet: ['text: 20'],
   }),
   instantsearch.widgets.hits({
     container: '#hits',
@@ -43,7 +45,8 @@ search.addWidgets([
             {{#helpers.highlight}}{ "attribute": "title" }{{/helpers.highlight}}
           </a>
             </div>
-          <div class="hit-authors">
+            <div>{{#helpers.snippet}}{ "attribute": "text" }{{/helpers.snippet}}</div>
+            <div class="hit-authors">
             {{ category }}
           </div>
         </div>
@@ -52,7 +55,7 @@ search.addWidgets([
   }),
 
   instantsearch.widgets.refinementList({
-    limit: 10,
+    limit: 5,
     showMore: true,
     showMoreLimit: 30,
     container: '#category',
@@ -63,19 +66,17 @@ search.addWidgets([
     sortBy: ['name:asc', 'count:desc'],
     cssClasses: {
       searchableInput: 'search-categs-input',
-      // searchableSubmit: 'd-none',
-      // searchableReset: 'd-none',
-      // showMore: 'btn btn-secondary btn-sm',
-      // list: 'list-unstyled',
-      // count: 'badge text-dark-2 ml-2',
-      // label: 'd-flex align-items-center',
-      // checkbox: 'mr-2',
     },
   }),
+  instantsearch.widgets.refinementList({
+    limit: 3,
+    container: '#aud',
+    attribute: 'aud',
+  }),
   instantsearch.widgets.rangeSlider({
-    container: '#nwords',
-    attribute: 'nwords',
-    step: 100,
+    container: '#read_time',
+    attribute: 'read_time',
+    step: 1,
   }),
 
   instantsearch.widgets.clearRefinements({

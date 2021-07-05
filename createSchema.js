@@ -19,7 +19,9 @@ module.exports = (async () => {
       { name: 'category', type: 'string', facet: true },
       { name: 'url', type: 'string' },
       { name: 'description', type: 'string' },
-      { name: 'nwords', type: 'int32', facet: true },
+      { name: 'text', type: 'string' },
+      { name: 'read_time', type: 'int32', facet: true },
+      { name: 'aud', type: 'string', facet: true },
     ],
   };
   const collections = await client.collections().retrieve();

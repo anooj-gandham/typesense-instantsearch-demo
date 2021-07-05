@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.21",
+    "react-instantsearch-dom": "^6.11.2",
     "typesense-instantsearch-adapter": "^1.0.0"
   }
 }
