@@ -20,8 +20,9 @@ module.exports = (async () => {
       { name: 'url', type: 'string' },
       { name: 'description', type: 'string' },
       { name: 'text', type: 'string' },
-      { name: 'read_time', type: 'int32', facet: true },
+      { name: 'readingtime', type: 'int32', facet: true },
       { name: 'aud', type: 'string', facet: true },
+      { name: 'imgs', type: 'string' },
     ],
   };
   const collections = await client.collections().retrieve();
