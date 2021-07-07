@@ -16,8 +16,8 @@ const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
   //  queryBy is required.
   //  filterBy is managed and overridden by InstantSearch.js. To set it, you want to use one of the filter widgets like refinementList or use the `configure` widget.
   additionalSearchParameters: {
-    queryBy: 'text',
-    highlightAffixNumTokens: 15,
+    queryBy: 'title,description,text, imgs',
+    highlightAffixNumTokens: 20 // <============
   },
 });
 const searchClient = typesenseInstantsearchAdapter.searchClient;
@@ -48,20 +48,31 @@ search.addWidgets([
   }),
   instantsearch.widgets.configure({
     hitsPerPage: 10,
-    // attributesToSnippet: ['text: 20'],
+    // attributesToSnippet: ['text']
   }),
   instantsearch.widgets.hits({
     container: '#hits',
     templates: {
       item: `
         <div>
-          <div class="hit-name"><a href={{url}}>
-            {{#helpers.highlight}}{ "attribute": "title" }{{/helpers.highlight}}
-          </a>
+        <div style="display:flex">
+
+         <div style="flex:15%">
+            <div>
+           <img src={{#helpers.snippet}}{ "attribute": "imgs" }{{/helpers.snippet}}  style="width:100%;height:100%"/>
             </div>
-            <div>{{#helpers.snippet}}{ "attribute": "text" }{{/helpers.snippet}}</div>
-            <div class="hit-authors">
-            {{ category }}
+        </div>
+
+          <div style="flex:75%">
+              <div class="hit-name"><a href={{url}}>
+                {{#helpers.highlight}}{ "attribute": "title" }{{/helpers.highlight}}
+                </a>
+                <p>{{#helpers.snippet}}{ "attribute": "description" }{{/helpers.snippet}}</p>
+                <p>{{#helpers.snippet}}{ "attribute": "text" }{{/helpers.snippet}}</p>
+              </div>
+              <div class="hit-authors">
+                {{ category }}
+              </div>
           </div>
         </div>
       `,
@@ -88,8 +99,8 @@ search.addWidgets([
     attribute: 'aud',
   }),
   instantsearch.widgets.rangeSlider({
-    container: '#read_time',
-    attribute: 'read_time',
+    container: '#readingtime',
+    attribute: 'readingtime',
     step: 1,
   }),
 
