@@ -57,23 +57,29 @@ const search = instantsearch({
     empty.style.display = helper.state.query !== "" ? "none" : "";
     structuredResults.style.display = helper.state.query === "" ? "none" : "";
 
-    console.log(helper.state.query);
+    // console.log(helper.state.query);
     let searchParams = {
       q: helper.state.query,
       query_by: "text",
       page: 1,
       per_page: 1,
+      highlight_affix_num_tokens: 30,
     };
-
-    client
-      .collections("blogs1")
-      .documents()
-      .search(searchParams)
-      .then(function(searchResults) {
-        console.log(searchResults);
-        document.getElementById("structuredResults").innerHTML =
-          searchResults.hits[0].document.text;
-      });
+    if (helper.state.query) {
+      client
+        .collections("blogs1")
+        .documents()
+        .search(searchParams)
+        .then(function(searchResults) {
+          // console.log(searchResults);
+          let element = `
+        <div>
+          <a href="${searchResults.hits[0].document.url}">About .....</a>
+          <p>${searchResults.hits[0].highlights[0].snippet}</p>
+        </div>`;
+          document.getElementById("structuredResults").innerHTML = element;
+        });
+    }
 
     helper.search();
   },
